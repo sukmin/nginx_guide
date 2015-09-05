@@ -1,6 +1,6 @@
 # nginx_guide
 
-## nginx다운로드 주소
+## nginx 다운로드 주소
 http://nginx.org/en/download.html
 
 ## 설치 line by line
@@ -58,7 +58,7 @@ nginx -t -c 다른경로
 /home/계정명/설치경로/nginx/conf/nginx.conf
 ```
 
-## 기본설절파일에서 주석제거한 부분
+## 기본설정파일에서 주석제거한 부분
 ```
 worker_processes  1;
 
