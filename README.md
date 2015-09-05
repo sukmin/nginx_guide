@@ -52,3 +52,43 @@ cd /home/계정명/설치경로/nginx/sbin
 #다른경로에 있는 설정파일의 유효성 확인
 nginx -t -c 다른경로
 ```
+
+## 설정파일의 위치
+```
+/home/계정명/설치경로/nginx/conf/nginx.conf
+```
+
+## 기본설절파일에서 주석제거한 부분
+```
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+        
+    }
+    
+}
+```
