@@ -121,7 +121,7 @@ This is Error!
 ```
 location [=|~|~*|^~|@] pattern { ... }
 ```
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+변경자  | 설명 | 예제
+------------- | ------------- | -------------
+=  | 패턴이 정확히 일치해야함  정규표현식은 사용할 수 없고 단순문자열만 가능 |  ㅁㅁ
+Content Cell  | Content Cell | ㅁㅁ
