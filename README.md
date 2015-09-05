@@ -33,6 +33,8 @@ ln -s /home/계정명/설치경로/nginx-1.9.4 nginx
 
 ## 설정이 제대로 되어있는지 확인
 ```
+cd /home/계정명/설치경로/nginx/sbin
+
 nginx -t
 
 #다른경로에 있는 설정파일의 유효성 확인
