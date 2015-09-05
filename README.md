@@ -117,3 +117,11 @@ This is Error!
 </body>
 </html>
 ```
+## 로케이션 변경자(location modifier)
+```
+location [=|~|~*|^~|@] pattern { ... }
+```
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
