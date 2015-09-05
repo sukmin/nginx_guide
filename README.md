@@ -58,3 +58,62 @@ nginx -t -c 다른경로
 ```
 /home/계정명/설치경로/nginx/conf/nginx.conf
 ```
+
+## Hello Nginx 띄우기
+아래와 같이 설정한다.
+```
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen       80;
+        server_name  100.10.10.10; #서버IP 또는 DNS설정 하셨다면 도메인을 쓰세요.
+
+        location / {
+            root   /home/계정명/html파일이있는주소;
+            index  index.html index.htm;
+        }
+
+        error_page   500 502 503 504 404 /error.html;
+        
+    }
+    
+}
+```
+
+아래의 두 html 파일을 적절한 위치에 넣는다.
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello Nginx</title>
+</head>
+<body>
+Hello Nginx!!!
+</body>
+</html>
+```
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Error Nginx</title>
+</head>
+<body>
+This is Error!
+</body>
+</html>
+```
