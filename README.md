@@ -13,9 +13,12 @@ cd nginx-1.9.4
 ./configure --prefix=/home/계정명/설치경로/nginx-1.9.4 --with-http_ssl_module --with-http_realip_module --user=계정명 --group=그룹명
 make
 make install
-
-#설치경로(prefix)로 이동. 이때도 root 계정
+cd /home/계정명/설치경로
 chown -R 계정명.그룹명 nginx-1.9.4
 cd nginx-1.9.4/sbin/
 chmod u+s nginx
+
+#사용자 계정으로 접근
+cd /home/계정명/설치경로
+ln -s /home/계정명/설치경로/nginx-1.9.4 nginx
 ```
