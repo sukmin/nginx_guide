@@ -151,8 +151,8 @@ function delete_nginx_log {
 function rotate_nginx_log() {
         DATE=`/bin/date +%Y%m%d --date '1days ago'`
 
-        mv $NGINX_LOG_DIR/상세디렉토리/액세스로그파일명 $NGINX_LOG_DIR/상세디렉토리/액세스로그파일명_$DATE
-        mv $NGINX_LOG_DIR/상세디렉토리/에러로그파일명 $NGINX_LOG_DIR/상세디렉토리/에러로그파일명_$DATE
+        mv $NGINX_LOG_DIR/상세디렉토리/access_액세스로그파일명 $NGINX_LOG_DIR/상세디렉토리/access_액세스로그파일명_$DATE
+        mv $NGINX_LOG_DIR/상세디렉토리/error_에러로그파일명 $NGINX_LOG_DIR/상세디렉토리/error_에러로그파일명_$DATE
 
         kill -USR1 `cat $NGINX_LOG_DIR/nginx.pid`
 }
