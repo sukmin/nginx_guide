@@ -130,3 +130,37 @@ location [=|~|~*|^~|@] pattern { ... }
 
 ### 설정 전체 예제
 https://www.nginx.com/resources/wiki/start/topics/examples/full/
+
+### 로그로테이트 설정
+```
+#!/bin/sh
+
+# File date format
+DATE=`/bin/date +%y%m%d`
+
+# Archive period
+DAYS=30
+
+NGINX_LOG_DIR=/home/사용자계정/로그위치
+
+function delete_nginx_log {
+        find $NGINX_LOG_DIR/상세디렉토리 -mtime +$DAYS -name "access*" -exec rm {} \;
+        find $NGINX_LOG_DIR/상세디렉토리 -mtime +$DAYS -name "error*" -exec rm {} \;
+}
+
+function rotate_nginx_log() {
+        DATE=`/bin/date +%Y%m%d --date '1days ago'`
+
+        mv $NGINX_LOG_DIR/상세디렉토리/액세스로그파일명 $NGINX_LOG_DIR/상세디렉토리/액세스로그파일명_$DATE
+        mv $NGINX_LOG_DIR/상세디렉토리/에러로그파일명 $NGINX_LOG_DIR/상세디렉토리/에러로그파일명_$DATE
+
+        kill -USR1 `cat $NGINX_LOG_DIR/nginx.pid`
+}
+
+delete_nginx_log
+rotate_nginx_log
+```
+쉘스크립트이므로 권한을 주어야 한다.
+```
+chmod 755 rotate.sh
+```
