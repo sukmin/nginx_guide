@@ -127,3 +127,6 @@ location [=|~|~*|^~|@] pattern { ... }
 * ~* : 대소문자를 구분하지 않으며 정규표현식과 일치해야함.
 * ^~ : ??? 아직 잘 이해가 안됨 테스트해보고...
 * @ : 클라이언트가 접근할 수 없고, 내부요청만 접근할 수 있는 location을 만듬.
+
+### 설정 전체 예제
+https://www.nginx.com/resources/wiki/start/topics/examples/full/
