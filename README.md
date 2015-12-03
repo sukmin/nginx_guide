@@ -131,6 +131,28 @@ location [=|~|~*|^~|@] pattern { ... }
 ### 설정 전체 예제
 https://www.nginx.com/resources/wiki/start/topics/examples/full/
 
+### 로그설정 및 정적자원 nginx로 돌리기
+```
+http {
+    ...
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+    ...
+    server {
+        ...
+        access_log logs/서비스명/access_로그이름.log main; #서비스명에 해당하는 디렉토리는 nginx/logs디렉토리 밑에 미리 만들어주어야 함
+        error_log logs/서비스명/error_로그이름.log;
+
+        location ~* \.(js|jpg|png|css|html|woff2)$ {
+            root /home/서비스하는_루트경로;
+            expires 1d;
+            access_log off;
+        }
+    }
+}
+```
+
 ### 로그로테이트 설정
 ```
 #!/bin/sh
