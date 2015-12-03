@@ -168,3 +168,28 @@ chmod 755 rotate.sh
 ```
 59 23 * * * /home/사용자계정/스크립트파일경로 > /dev/null 2>&1
 ```
+
+### TOMCAT 연결
+```
+server {
+    ...
+    location / {
+            proxy_pass http://127.0.0.1:8080; #로컬에 톰캣
+
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr; #톰캣에 사용자IP 전달을 위해 추가
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; #톰캣에 사용자IP 전달을 위해 추가
+
+            proxy_intercept_errors on; #톰캣이 죽었을 때 에러페이지를 엔진엑스로 보여주기 위해 설정
+            error_page   500 502 503 504 404 @error_page; #톰캣이 죽으면 일반적으로 502에러 발생
+        }
+
+        location @error_page{
+            root /home/톰캣이_죽었을경우_엔진엑스가_바라볼_경로;
+            internal;
+            rewrite ^ /error.html;
+            break;
+        }
+}
+```
